@@ -66,14 +66,47 @@ int main(int argc, string argv[])
 // Update vote totals given a new vote
 bool vote(string name)
 {
-    // TODO
+    // Loop through candidates array
+    // Array size is equal to candidate_count defined in main()
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // Check if name matches one of the candidates' name
+        // If it's a match
+        if (!strcmp(candidates[i].name, name))
+        {
+            // Update candidate's vote total
+            candidates[i].votes++;
+            return true;
+        }
+        // Otherwise, keep looping until the end of the array
+    }
+    // If there are no match, return false
     return false;
+
 }
 
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-    // TODO
-    return;
+    int highest = candidates[0].votes;
+
+    // Loop through candidate array
+    for (int i = 0; i < candidate_count; i++)
+    {
+        // Check if highest is smaller than this candidate's votes
+        if (highest < candidates[i].votes)
+        {
+            // If it is, highest is equal to this number of votes
+            highest = candidates[i].votes;
+        }
+        // Otherwise, highest remains highest
+
+        // Check when highest is equal to candidates' number of votes
+        if (highest == candidates[i].votes)
+        {
+            // Print candidates' name if it is
+            printf("%s\n", candidates[i].name);
+        }
+    }
 }
 
